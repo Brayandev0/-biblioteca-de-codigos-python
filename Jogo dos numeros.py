@@ -40,9 +40,10 @@ while True:
         num1 = int(input(" Insira algum numero para tentar adivinhar o meu :  "))
         print(BARRAS)
     except ValueError:
-        print("")
+        print(ERRO5)
         print(BARRAS)
         exit(ERRO5)
+        continue
 #----------------------------------------------------------------------------------------------------------------
 #                                Erro de numero invalido (maior que 10)
 
