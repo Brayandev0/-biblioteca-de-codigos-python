@@ -1,15 +1,14 @@
 # Criador         : Brayan vieira 
 # função          : realiza varios calculos de numeros inteiros 
-# versão          : 2.1
+# versão          : 2.2
 # data da criação : 06/2/2024
-
+# Notas versão 2.2: estabilidade melhorado e mais rapidez função case adicionada 
 #---------------------------------------------------------------------------------------------------
 #                                   Variaveis e bibliotecas importadas
 import math 
 barras = 50 * "-"
 ESPACO = 3 * "\n"
 opçoes = ("s", "d", "m", "p", "rr", "dd")
-MENU = "oque você deseja realizar ?  [s] soma | [d] divisão | [m] multiplicação | [p] potencia | [rr] raiz quadrada | [dd] divisão inteira  : "
 #---------------------------------------------------------------------------------------------------
 #                                   Menu e inicio da calculadora
 while True:
@@ -23,7 +22,7 @@ while True:
 #                                  Escolha de calculo 
     else:
         print("\n" * 100)
-        decisao2 = input(MENU).lower()
+        decisao2 = input("oque você deseja realizar ?  [s] soma | [d] divisão | [m] multiplicação | [p] potencia | [rr] raiz quadrada | [dd] divisão inteira  : ").lower()
     if decisao2 not in opçoes:
         print(ESPACO)
         print(" Você inseriu um caracter invalido ")
@@ -32,36 +31,37 @@ while True:
 
 #-------------------------------------------------------------------------------------------------
 #                               calculo da Raiz quadrada 
-    if decisao2 == "rr":
-        print(ESPACO)
-        raiz_num = int(input("insira o numero para ver a raiz quadrada : "))
-        resul = math.sqrt(raiz_num)
-        print(barras)
-        print(f" a raiz de {raiz_num} e {resul:.2f}")
-        print(barras)
-        continue
+    match decisao2:
+        case "rr":
+                print(ESPACO)
+                raiz_num = int(input("insira o numero para ver a raiz quadrada : "))
+                resul = math.sqrt(raiz_num)
+                print(barras)
+                print(f" a raiz de {raiz_num} e {resul:.2f}")
+                print(barras)
+                continue
 #-------------------------------------------------------------------------------------------------
 #                                   Calculo da potencia 
-    if decisao2 == "p":
-        print(ESPACO)
-        potencia1 = int(input("insira o numero inteiro para a potencia : "))
-        potencia2 = int(input("insira o numero da potencia : "))
-        result = math.pow(potencia1, potencia2)
-        print(barras)
-        print(f"o resultado da potencia e : {result}")
-        print(barras)
-        continue
+        case "p":
+            print(ESPACO)
+            potencia1 = int(input("insira o numero inteiro para a potencia : "))
+            potencia2 = int(input("insira o numero da potencia : "))
+            result = math.pow(potencia1, potencia2)
+            print(barras)
+            print(f"o resultado da potencia e : {result}")
+            print(barras)
+            continue
 #-----------------------------------------------------------------------------------------------
 #                                   Divisão inteira 
-    if decisao2 == "dd":
-        print(barras)
-        divisao_int = int(input("insira o numero inteiro para dividir : "))
-        print(barras)
-        divisor_int = int(input("insira o divisor : "))
-        total = divisao_int // divisor_int
-        print(ESPACO)
-        print(f"o resultado da divisão inteira e : {total} \n ")
-        continue
+        case "dd":
+            print(barras)
+            divisao_int = int(input("insira o numero inteiro para dividir : "))
+            print(barras)
+            divisor_int = int(input("insira o divisor : "))
+            total = divisao_int // divisor_int
+            print(ESPACO)
+            print(f"o resultado da divisão inteira e : {total} \n ")
+            continue
 #-----------------------------------------------------------------------------------------------
 #                                      Possiveis erros
     total_input2 = len(decisao2)
@@ -85,23 +85,23 @@ while True:
             continue
 #------------------------------------------------------------------------------------------------
 #                                       ifs direcionados para Calculos 
-        if decisao2 == "s":
-            soma = num1 + num2
-            print(f" o resultado da sua soma e : {soma}")
-            print(barras)
+        match decisao2:
+            case "s":
+                soma = num1 + num2
+                print(f" o resultado da sua soma e : {soma}")
+                print(barras)
 
-        elif decisao2 == "d":
-            divisao = num1 / num2
+            case "d":
+                divisao = num1 / num2
+                print(f" o resulado da divisão e : {divisao} ")
+                print(barras)
 
-            print(f" o resulado da divisão e : {divisao} ")
-            print(barras)
-
-        elif decisao2 == "m":
-            multiplicaçao = num1 * num2
-            print(f" o resultado da multiplicação e : {multiplicaçao} ")
-            print(barras)
+            case "m":
+                multiplicaçao = num1 * num2
+                print(f" o resultado da multiplicação e : {multiplicaçao} ")
+                print(barras)
 #------------------------------------------------------------------------------------------------
 #                                 mensagem de erro
-        else:
-            print("um erro ocorreu tente novamente : ")
-            continue
+            case _:
+                print("um erro ocorreu tente novamente : ")
+                continue
