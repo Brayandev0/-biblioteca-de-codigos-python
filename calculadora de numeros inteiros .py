@@ -1,18 +1,29 @@
 # Criador         : Brayan vieira 
 # função          : realiza varios calculos de numeros inteiros 
-# versão          : 2.2
+# versão          : 2.3
 # data da criação : 06/2/2024
-# Notas versão 2.2: estabilidade melhorado e mais rapidez função case adicionada 
+# Notas versão 2.2: estabilidade melhorado e mais rapidez função, case adicionada 
+# Notas versão 2.3: melhor nitidez e usabilidade, trocados espacos pelo limpador de tela 
 #---------------------------------------------------------------------------------------------------
 #                                   Variaveis e bibliotecas importadas
+import os
 import math 
+import platform
 barras = 50 * "-"
 ESPACO = 3 * "\n"
 opçoes = ("s", "d", "m", "p", "rr", "dd")
+#----------------------------------------------------------------------------------------------------
+#                                   Função limpar a tela  
+def limpar_tela():
+    sistema = platform.system()
+    if sistema == "Windows":
+        limpador = "cls"
+    elif sistema == "Linux":
+        limpador = "clear"
+    return os.system(limpador)
 #---------------------------------------------------------------------------------------------------
 #                                   Menu e inicio da calculadora
 while True:
-    print(ESPACO)
     decisao1 = input("deseja entrar na calculadora ? [S] sim ou [N] não? : ").lower().startswith("s")
     print(barras)
     if not decisao1 :
@@ -20,13 +31,12 @@ while True:
         break
 #-------------------------------------------------------------------------------------------------
 #                                  Escolha de calculo 
-    else:
-        print("\n" * 100)
-        decisao2 = input("oque você deseja realizar ?  [s] soma | [d] divisão | [m] multiplicação | [p] potencia | [rr] raiz quadrada | [dd] divisão inteira  : ").lower()
+    print("\n" * 100)
+    decisao2 = input("oque você deseja realizar ? \n \n [s] soma | [d] divisão \n \n [m] multiplicação | [p] potencia \n \n [rr] raiz quadrada | [dd] divisão inteira  \n \n Insira : ").lower()
+    limpar_tela()
     if decisao2 not in opçoes:
-        print(ESPACO)
-        print(" Você inseriu um caracter invalido ")
-        print(ESPACO)
+        limpar_tela()
+        print(" Você inseriu um caracter invalido \n ")
         continue
 
 #-------------------------------------------------------------------------------------------------
@@ -36,31 +46,29 @@ while True:
                 print(ESPACO)
                 raiz_num = int(input("insira o numero para ver a raiz quadrada : "))
                 resul = math.sqrt(raiz_num)
-                print(barras)
-                print(f" a raiz de {raiz_num} e {resul:.2f}")
-                print(barras)
+                limpar_tela()
+                print(f" a raiz de {raiz_num} e {resul:.2f} \n ")
                 continue
 #-------------------------------------------------------------------------------------------------
 #                                   Calculo da potencia 
         case "p":
-            print(ESPACO)
+            limpar_tela()
             potencia1 = int(input("insira o numero inteiro para a potencia : "))
             potencia2 = int(input("insira o numero da potencia : "))
             result = math.pow(potencia1, potencia2)
-            print(barras)
-            print(f"o resultado da potencia e : {result}")
-            print(barras)
+            limpar_tela()
+            print(f" \n o resultado da potencia e : {result} \n ")
             continue
 #-----------------------------------------------------------------------------------------------
 #                                   Divisão inteira 
         case "dd":
-            print(barras)
+            limpar_tela()
             divisao_int = int(input("insira o numero inteiro para dividir : "))
-            print(barras)
+            limpar_tela()
             divisor_int = int(input("insira o divisor : "))
             total = divisao_int // divisor_int
-            print(ESPACO)
-            print(f"o resultado da divisão inteira e : {total} \n ")
+            limpar_tela()
+            print(f"\n o resultado da divisão inteira e : {total} \n ")
             continue
 #-----------------------------------------------------------------------------------------------
 #                                      Possiveis erros
@@ -68,24 +76,22 @@ while True:
     if total_input2 > 2:
         print("erro realize cada calculo apenas 1 vez")
         continue
-    else : 
-   
 #------------------------------------------------------------------------------------------------
 #                           Entrada de dados para o numero do calculo e mensagem de erro
-        try:
-            print(barras)
-            num1 = int(input(f" insira um numero para continuar para o calculo  : "))
-            print(barras)
-            num2 = int(input(f" insira outro numero para continuar o calculo  : "))
-            print(barras)
-        except ValueError:
-            print(barras)
-            print("erro insira apenas numeros")
-            print(barras)
+    try:
+            limpar_tela()
+            num1 = int(input(f" \n  insira um numero para continuar para o calculo  : "))
+            limpar_tela()
+            num2 = int(input(f" \n insira outro numero para continuar o calculo  : "))
+            limpar_tela()
+    except ValueError:
+            limpar_tela()
+            print("\n erro insira apenas numeros")
+            limpar_tela()
             continue
 #------------------------------------------------------------------------------------------------
 #                                       ifs direcionados para Calculos 
-        match decisao2:
+    match decisao2:
             case "s":
                 soma = num1 + num2
                 print(f" o resultado da sua soma e : {soma}")
