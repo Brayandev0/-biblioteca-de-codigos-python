@@ -25,10 +25,9 @@ def add():
           os.system(limpador)
           print(f"\n sua lista de tarefas atual e : {tarefas} \n")
           return input(PADRAO)
-        else:
-             os.system(limpador)
-             print("você não inseriu nada \n ")
-             return input(PADRAO)
+        os.system(limpador)
+        print("você não inseriu nada \n ")
+        return input(PADRAO)
 #-------------------------------------------------------------------------------------------------------
 #                                                    Função remover tarefas 
 def remover():
