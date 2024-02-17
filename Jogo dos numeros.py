@@ -8,7 +8,7 @@ import platform
 import os
 #----------------------------------------------------------------------------------------------------------------
 #                                       Funções extras para deixar o codigo mais limpo
-ESPACO = 5 * "\n"
+ESPACO = 2 * "\n"
 BARRAS = 30 * "-"
 #----------------------------------------------------------------------------------------------------------------
 #                                            Erros do programa salvos
@@ -37,50 +37,44 @@ while True:
 #-----------------------------------------------------------------------------------------------------------------
 #                                         Erro de caracter invalido 
     try:
-        num1 = int(input(" Insira algum numero para tentar adivinhar o meu :  "))
+        numero_do_usuario = int(input(" Insira algum numero para tentar adivinhar o meu :  "))
         print(BARRAS)
     except ValueError:
+        print(ESPACO)
         print(ERRO5)
         print(BARRAS)
-        exit(ERRO5)
-        continue
+        exit(5)
 #----------------------------------------------------------------------------------------------------------------
 #                                Erro de numero invalido (maior que 10)
 
-    if num1 > 10:
-        print(BARRAS)
-
+    if numero_do_usuario > 10:
         print(ERRO10)
-
         print(BARRAS)
         exit(10)
 #----------------------------------------------------------------------------------------------------------------
 #                                       erro de numero invalido (menor que 0)
-    if num1 < 0:
-        print(BARRAS)
+    if numero_do_usuario < 0:
         print(ERRO12)
         print(BARRAS)
         exit(12)
 
 #-----------------------------------------------------------------------------------------------------------------
 #                                       gerando o numero 
-    my_num = random.randint(1,10)
+    numero_da_maquina = random.randint(1,10)
 #-----------------------------------------------------------------------------------------------------------------
 #                                   configurando o acerto 
-    if num1 == my_num:
+    if numero_do_usuario == numero_da_maquina:
         os.system(limpar)
         print(color.GREEN + "você acertou meu numero parabens " + color.RESET)
         print(ESPACO)
 #----------------------------------------------------------------------------------------------------------------
 #                                   configurando o erro 
-    else:
-        os.system(limpar)
-        print(color.RED + f" Você errou meu numero e : {my_num}" + color.RESET)
-        print(ESPACO)
+    os.system(limpar)
+    print(color.RED + f" Você errou meu numero e : {numero_da_maquina}" + color.RESET)
+    print(ESPACO)
 #----------------------------------------------------------------------------------------------------------------
 #                                       quer reiniciar o looping? 
     dnv = input("quer jogar novamente ? [S] sim [N] não : ").lower().startswith("s")
     if dnv == True:
         continue
-    else:
-        break
+    break
