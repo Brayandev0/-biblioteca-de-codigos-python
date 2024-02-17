@@ -1,7 +1,8 @@
 # Criador         : Brayan vieira 
 # função          : Gerador de senhas seguro  
-# versão          : 1.0
+# versão          : 1.1
 # data da criação : 15/2/2024
+# Notas versão 1.1: melhor nitidez e tratamento de erros
 #---------------------------------------------------------------------------------------
 #                                   configurando bibliotecas 
 import random
@@ -49,9 +50,11 @@ match decisao_do_menu:
 print("\n \n Insira o comprimento da senha abaixo \n Ex : 10 \n \n uma senha de 10 caracteres ")
 try:
     comprimento = int(input("\n insira : "))
-except:
+except ValueError:
     print(f" \n \n {ERRO_PADRAO} \n ")
-    exit()
+#    exit()
+except NameError:
+    print(ERRO_PADRAO)
 #---------------------------------------------------------------------------------------
 #                           
 gerar_senha(comprimento, tipo_senha)
